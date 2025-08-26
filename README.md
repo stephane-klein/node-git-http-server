@@ -1,11 +1,12 @@
 # Native Node.js Git HTTP Server with git-http-backend 
 
-A zero-dependency Git HTTP server using native Node.js modules and [git-http-backend](https://git-scm.com/docs/git-http-backend).
+A Git HTTP server using native Node.js modules, [Express](https://expressjs.com/) and [git-http-backend](https://git-scm.com/docs/git-http-backend).
 
 More information in french, see: https://notes.sklein.xyz/Projet%2032/
 
 ```sh
 $ mise install
+$ pnpm install
 $ ./server.js
 Create "repos1" git bare repository
 Create "repos2" git bare repository
@@ -49,4 +50,18 @@ Author: stephane-klein <contact@stephane-klein.info>
 Date:   Sun Aug 24 11:07:11 2025 +0200
 
     First import
+```
+
+After each `git push`, an event with a few parameters is sent to the server's `/post_recieve_hook_url/` endpoint.  
+You can see this event pass through in the *stdout* of `server.js`:
+
+```
+...
+Received JSON: {
+  oldrev: 'aa9c439c932854be6c217614ee35fc4f31ee9c68',
+  newrev: '0e797f33342f49962a084db1c945ed0f87325543',
+  refname: 'refs/heads/main',
+  branch: 'main',
+  repository: 'repos1.git'
+}
 ```

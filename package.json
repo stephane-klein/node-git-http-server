@@ -1,5 +1,9 @@
 {
     "type": "module",
     "private": true,
-    "packageManager": "pnpm@10.15.0"
+    "packageManager": "pnpm@10.15.0",
+    "dependencies": {
+        "express": "5.1.0",
+        "string-dedent": "3.0.2"
+    }
 }
